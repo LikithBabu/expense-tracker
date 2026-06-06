@@ -2,6 +2,7 @@ package com.likithbabugarlapati.expense_tracker.Controller;
 
 import com.likithbabugarlapati.expense_tracker.Model.Expense;
 import com.likithbabugarlapati.expense_tracker.Service.ExpenseService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class ExpenseController
     }
 
     @PostMapping
-    public Expense addExpenses(@RequestBody Expense expense)
+    public Expense addExpenses(@Valid  @RequestBody Expense expense)
     {
        return expenseService.addExpense(expense);
     }
@@ -85,7 +86,7 @@ public class ExpenseController
 
 
     @PutMapping("/{id}")
-    public Expense updateExpense(@PathVariable long id, @RequestBody Expense expense)
+    public Expense updateExpense(@PathVariable long id, @Valid @RequestBody Expense expense)
     {
         return expenseService.updateExpense(id,expense);
     }
